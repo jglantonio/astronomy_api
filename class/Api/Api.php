@@ -1,5 +1,5 @@
 <?php
-namespace Api\Api;
+namespace Api;
 class Api
 {
     private $ch = null;

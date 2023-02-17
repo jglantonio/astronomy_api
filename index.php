@@ -1,10 +1,10 @@
 <?php
 require 'vendor/autoload.php';
 
-CONST ROOT = __DIR__;
+use Nasa\Asteroid;
 
+$asteroid = new Asteroid('2023-02-17','2023-02-17');
+$asteroid->getData();
 
-require_once 'class/Nasa/Object.php';
-$object = new \Nasa\ObjectNasa('2023-02-16','2023-02-16');
-
-var_dump($object->getData());
+$asteroid = $asteroid->getAll();
+var_dump(count($asteroid));

@@ -1,3 +1,9 @@
 {
-
+  "autoload": {
+    "psr-4": {
+      "Api\\" : "class/Api",
+      "Nasa\\" : "class/Nasa",
+      "Dto\\" : "dto/Nasa"
+    }
+  }
 }
