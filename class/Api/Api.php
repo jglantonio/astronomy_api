@@ -3,7 +3,7 @@ namespace Api;
 class Api
 {
     private $ch = null;
-    private $key = "pyLChVua0jsWvSvdKY5RzNE1y2sTiajtgqM7oFoN";
+    private $key = "";
     private $url;
 
     public function __construct($url)
