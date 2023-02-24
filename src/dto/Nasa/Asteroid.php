@@ -39,7 +39,7 @@ class Asteroid
     public function getEstimatedDiameter($magnitude)
     {
         if(!$this->validMaginitude($magnitude)){
-            throw new \Exception('Maginutdes : Kilometers , meters , feets');
+            throw new \Exception('Maginutdes : kilometers , meters , feets');
         }
         return $this->estimated_diameter->$magnitude;
     }

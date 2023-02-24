@@ -32,10 +32,6 @@ class Api
     }
 
     public function send(){
-        if($this->key !== null){
-            $this->url .="?api_key=".$this->key;
-        }
-        var_dump($this->url);
         curl_setopt($this->ch, CURLOPT_URL, $this->url);
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -43,6 +39,7 @@ class Api
         $data = curl_exec($this->ch);
         curl_close($this->ch);
         $dataObject = json_decode($data);
+
         if(isset($dataObject->error)){
             $this->setError($dataObject->error);
             return false;
@@ -53,10 +50,12 @@ class Api
     public function setParams(array $data)
     {
         $request = "";
-        foreach($data as $key => $value){
-            $request.="$key=$value&";
+        if($this->key !== null){
+            $this->url .="?api_key=".$this->key;
         }
-        $this->url.="&".$request;
+        foreach($data as $key => $value){
+            $this->url.="&$key=$value";
+        }
     }
 
 }

@@ -1,10 +1,11 @@
 <?php
 namespace Nasa;
 use Api\Nasa;
+use PHPUnit\Logging\Exception;
 
 class Asteroid
 {
-    private $api = null;
+    private $nasa = null;
     private $primitiveData = null;
 
     private function getPrimitiveData()
@@ -13,26 +14,29 @@ class Asteroid
     }
     public function __construct($startDate,$endDate)
     {
-        $this->api = new Nasa("https://api.nasa.gov/neo/rest/v1/feed");
-        $this->api->setParams([
+        $this->nasa = new Nasa("https://api.nasa.gov/neo/rest/v1/feed");
+        $this->nasa->setParams([
             'start_date' => $startDate,
             'end_date' => $endDate
         ]);
     }
     public function getData()
     {
-        return json_decode($this->api->send());
+        if(!$this->nasa->send()){
+            $error = $this->nasa->getError();
+            throw new \Exception($error->code." : ".$error->message);
+        }
+        return $this->nasa->getData();
     }
 
     public function getById($int = null,$dateFind = null){
-        if($this->isLoaded()){
-            $this->getData();
-        }
-        $dataPrimitive = $this->getPrimitiveData();
+        $dataPrimitive =  $this->getData();
+
         if(is_null($dataPrimitive)){
             throw new \Exception('Error : No hay datos');
         }
 
+        var_dump($dataPrimitive);
         foreach($dataPrimitive->near_earth_objects as $date => $objectAsteroid){
             if(!is_null($dateFind) && !is_null($int)){
                 if($date == $dateFind){
@@ -50,11 +54,7 @@ class Asteroid
 
     public function getAll()
     {
-        if($this->isLoaded()){
-            $this->getData();
-        }
-        $dataPrimitive = $this->getPrimitiveData();
-        var_dump($dataPrimitive);die();
+        $dataPrimitive = $this->getData();
         if(is_null($dataPrimitive)){
             throw new \Exception('Error : No hay datos');
         }
