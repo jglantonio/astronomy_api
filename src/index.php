@@ -1,4 +1,5 @@
 <?php
+CONST API_KEY_NASA = "pyLChVua0jsWvSvdKY5RzNE1y2sTiajtgqM7oFoN";
 require 'vendor/autoload.php';
 
 use Nasa\Asteroid;

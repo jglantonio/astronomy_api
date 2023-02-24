@@ -5,5 +5,8 @@
       "Nasa\\" : "class/Nasa",
       "Dto\\" : "dto/Nasa"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "10"
   }
 }

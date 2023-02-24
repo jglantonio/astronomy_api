@@ -29,7 +29,6 @@ class Asteroid
             $this->getData();
         }
         $dataPrimitive = $this->getPrimitiveData();
-
         if(is_null($dataPrimitive)){
             throw new \Exception('Error : No hay datos');
         }
@@ -55,6 +54,7 @@ class Asteroid
             $this->getData();
         }
         $dataPrimitive = $this->getPrimitiveData();
+        var_dump($dataPrimitive);die();
         if(is_null($dataPrimitive)){
             throw new \Exception('Error : No hay datos');
         }
